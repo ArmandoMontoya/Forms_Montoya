@@ -1,0 +1,57 @@
+<form autocomplete="off" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <h2>Profile</h2>
+  <div class="form-group row">
+    <div class="col-12 col-lg-6">
+      <label for="first-name">First Name: <label class="text-danger">*</label></label>
+      <input id="first-name" type="text" class="form-control" formControlName="firstName">
+      <span class="form-text text-danger" *ngIf="validarForm('firstName')">Campo
+        obligatorio
+      </span>
+      <span class="form-text text-danger" *ngIf="profileForm.controls['firstName'].hasError('minlength')">Mínimo cinco
+        caracteres</span>
+      <span class="form-text text-danger" *ngIf="profileForm.controls['firstName'].hasError('maxlength')">Máximo
+        quince caracteres</span>
+      <span class="form-text text-danger" *ngIf="profileForm.controls['firstName'].errors?.['pattern']">No se
+        permiten
+        caracteres especiales</span>
+    </div>
+    <div class="col-12 col-lg-6">
+      <label for="last-name">Last Name: <label class="text-danger">*</label></label>
+      <input id="last-name" type="text" class="form-control" formControlName="lastName">
+      <span class="form-text text-danger" *ngIf="validarForm('lastName')">Campo
+        obligatorio
+      </span>
+      <span class="form-text text-danger" *ngIf="profileForm.controls['lastName'].hasError('minlength')">Mínimo cinco
+        caracteres</span>
+      <span class="form-text text-danger" *ngIf="profileForm.controls['lastName'].hasError('maxlength')">Máximo
+        quince caracteres</span>
+      <span class="form-text text-danger" *ngIf="profileForm.controls['lastName'].errors?.['pattern']">No se
+        permiten
+        caracteres especiales</span>
+    </div>
+  </div>
+  <div formGroupName="address">
+    <div class="form-group row">
+      <h2>Address</h2>
+      <div class="col-12 col-lg-6">
+        <label for="street">Street: </label>
+        <input id="street" type="text" class="form-control" formControlName="street">
+      </div>
+
+      <div class="col-12 col-lg-6">
+        <label for="city">City: </label>
+        <input id="city" type="text" class="form-control" formControlName="city">
+      </div>
+      <div class="col-12 col-lg-6">
+        <label for="state">State: </label>
+        <input id="state" type="text" class="form-control" formControlName="state">
+      </div>
+      <div class="col-12 col-lg-6">
+        <label for="zip">Zip Code: </label>
+        <input id="zip" type="text" class="form-control" formControlName="zip">
+      </div>
+    </div>
+  </div>
+  <p><small>Completa el formulario para para habilitar el botón</small></p>
+  <button class="btn btn-primary" type="submit" [disabled]="!profileForm.valid">Submit</button>
+</form>
